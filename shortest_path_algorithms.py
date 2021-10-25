@@ -1,3 +1,8 @@
+'''
+Implements the Bellman Ford and Dijkstra's shortest path algorithms. 
+Authors: Adi Sudhakar and Dasha Chadiuk
+'''
+
 import time
 import matplotlib.pyplot as plt
 from sys import maxsize
