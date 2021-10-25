@@ -11,7 +11,7 @@ import numpy as np
 #### VARIABLES ####
 def redefine_variables():
     max_val = maxsize #placeholder super big number to represent infinity
-    visit_dist = [[0, 0]] #[[visited?, distance to], [visited?, distance to], ...]
+    visit_dist = [[0, 0]] #[[visited?, distance to],]
     return max_val, visit_dist
 
 '''
@@ -40,7 +40,9 @@ def visit_next():
 
     # Choosing the vertex with the minimum distance
     for vertex in range(total_vertices):
-        if visit_dist[vertex][0] == 0 and (visited < 0 or visit_dist[vertex][1] <= visit_dist[visited][1]):
+        if visit_dist[vertex][0] == 0 and \
+                (visited < 0 or visit_dist[vertex][1] \
+                <= visit_dist[visited][1]):
             visited = vertex
 
     return visited
@@ -57,8 +59,10 @@ def run_dijkstra(connections, edge_weight, total_vertices):
         to_visit = visit_next()
         for adj_vertex in range(total_vertices):
             # Calculate distance to unvisited adjacent vertices
-            if connections[to_visit][adj_vertex] == 1 and visit_dist[adj_vertex][0] == 0:
-                updated_dist = visit_dist[to_visit][1] + edge_weight[to_visit][adj_vertex]
+            if connections[to_visit][adj_vertex] == 1 and \
+                    visit_dist[adj_vertex][0] == 0:
+                updated_dist = visit_dist[to_visit][1] + \
+                        edge_weight[to_visit][adj_vertex]
             # Updating the distance of the adjacent vertex
                 if visit_dist[adj_vertex][1] > updated_dist:
                     visit_dist[adj_vertex][1] = updated_dist
@@ -69,7 +73,8 @@ def run_dijkstra(connections, edge_weight, total_vertices):
     # Printing out the shortest distance from the source to each vertex 
     for distance in visit_dist:
         # FOR DEBUG ONLY. COMMENT OUT 'PRINT' LINE FOR GETTING TIME DATA
-        # print("The shortest path to vertex [",(ord('a') + loc),"] from vertex [a] is:",distance[1])
+        # print("The shortest path to vertex [",(ord('a') + loc),"] 
+        #from vertex [a] is:",distance[1])
         loc = loc + 1
     end = time.time()
     
@@ -192,7 +197,8 @@ if __name__ == "__main__":
             ]
       
     #convert graph into 2 matrices of vertex connections and edge weights: 
-    connections, edge_weight = graph_to_adjacency(graph, total_vertices, total_edges) 
+    connections, edge_weight = \
+            graph_to_adjacency(graph, total_vertices, total_edges) 
 
     for j in range(1000):
         max_val, visit_dist = redefine_variables()
