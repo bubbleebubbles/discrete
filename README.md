@@ -1,2 +1,2 @@
-# discrete
-repository where all discrete work from FA2021 will go
+# Discrete Math Fall 2021 Olin College of Engineering
+
